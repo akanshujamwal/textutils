@@ -6,33 +6,33 @@ Built to demonstrate modern React fundamentals, clean UI, and component-driven a
 
 ---
 
-## ✨ Features
+##  Features
 
-### 📝 Text Manipulation
+###  Text Manipulation
 - Convert text to **Uppercase**
 - Convert text to **Lowercase**
 - Clear entire text
 - Remove extra spaces
 - Copy text to clipboard
 
-### 📊 Text Analysis
+###  Text Analysis
 - Word count
 - Character count
 - Estimated reading time
 - Live preview
 
-### 🎨 Theme Support
+###  Theme Support
 - Light / Dark mode toggle
 - Smooth UI transitions
 
-### ⚡ Real-Time Updates
+###  Real-Time Updates
 - Instant output using React state
 - No page reloads
 - Live preview while typing
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 - React (Functional Components + Hooks)
 - JavaScript (ES6+)
@@ -41,7 +41,7 @@ Built to demonstrate modern React fundamentals, clean UI, and component-driven a
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 ```
 textutils/
 │
@@ -58,26 +58,26 @@ textutils/
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 Follow these steps to run the project locally:
 
-### 1️⃣ Clone the Repository
+### 1️ Clone the Repository
 ```bash
 git clone https://github.com/your-username/textutils.git
 ```
 
-### 2️⃣ Navigate to Project Folder
+### 2️ Navigate to Project Folder
 ```bash
 cd textutils
 ```
 
-### 3️⃣ Install Dependencies
+### 3️ Install Dependencies
 ```bash
 npm install
 ```
 
-### 4️⃣ Start Development Server
+### 4️ Start Development Server
 ```bash
 npm start
 ```
@@ -89,7 +89,7 @@ http://localhost:3000
 
 ---
 
-## 🎯 Learning Objectives
+##  Learning Objectives
 
 This project focuses on:
 
@@ -106,13 +106,13 @@ Ideal for beginners transitioning from JavaScript to React.
 
 ---
 
-## 📸 Screenshots
+##  Screenshots
 
 _Add screenshots here for better GitHub presentation._
 
 ---
 
-## 🔮 Future Enhancements
+##  Future Enhancements
 
 - Character limit selector
 - Text formatting tools
@@ -123,7 +123,7 @@ _Add screenshots here for better GitHub presentation._
 
 ---
 
-## 🤝 Contributing
+##  Contributing
 
 Pull requests are welcome.
 
@@ -137,13 +137,13 @@ For major changes, please open an issue first.
 
 ---
 
-## 📄 License
+##  License
 
 This project is licensed under the **MIT License**.
 
 ---
 
-## 👤 Author
+##  Author
 
 **Akanshu Jamwal**  
 Frontend Developer  
