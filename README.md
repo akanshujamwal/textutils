@@ -149,8 +149,3 @@ This project is licensed under the **MIT License**.
 Frontend Developer  
 Flutter • React • JavaScript
 
----
-
-## ⭐ Show Your Support
-
-Give a ⭐ if this project helped you!
