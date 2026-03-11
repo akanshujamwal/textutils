@@ -147,5 +147,5 @@ This project is licensed under the **MIT License**.
 
 **Akanshu Jamwal**  
 Frontend Developer  
-Flutter • React • JavaScript
+
 
