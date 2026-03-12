@@ -20,16 +20,16 @@ export default function Navbar(props) {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <a className="nav-link active" aria-current="page" href="/">
                 Home
               </a>
-            </li>
-            <li className="nav-item">
+            </li> */}
+            {/* <li className="nav-item">
               <a className="nav-link" href="/">
                 About
               </a>
-            </li>
+            </li> */}
           </ul>
           <form className="d-flex" role="search">
             {/* <input
@@ -41,7 +41,6 @@ export default function Navbar(props) {
             {/* <button className="btn btn-outline-success" type="submit">
               Search
             </button> */}
-       
           </form>
         </div>
       </div>
