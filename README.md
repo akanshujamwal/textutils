@@ -106,11 +106,6 @@ Ideal for beginners transitioning from JavaScript to React.
 
 ---
 
-##  Screenshots
-
-_Add screenshots here for better GitHub presentation._
-
----
 
 ##  Future Enhancements
 
