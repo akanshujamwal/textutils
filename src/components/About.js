@@ -1,181 +1,161 @@
-import React, { useState } from "react";
+import React from "react";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 export default function About() {
-  const [myStyle, setmyStyle] = useState({
-    color: "black",
-    backgroundColor: "white",
-  });
-
-  const [btnText, setBtnText] = useState("Enable Dark Mode");
-
-  const toggleStyle = () => {
-    if (myStyle.color === "black") {
-      setmyStyle({
-        color: "white",
-        backgroundColor: "black",
-        border: "1px solid white",
-      });
-      setBtnText("Enable Light Mode");
-    } else {
-      setmyStyle({
-        color: "black",
-        backgroundColor: "white",
-      });
-      setBtnText("Enable Dark Mode");
-    }
-  };
   return (
-    <div className="container my-3" style={myStyle}>
-      <h1 className="my-3">About TextUtils</h1>
+    <div className="container py-5">
+      {/* Page Title */}
 
-      {/* Intro text before accordion */}
+      <h2 className="mb-4">About TextUtils</h2>
+
       <p className="lead">
-        <strong>
-          TextUtils is a lightweight and user-friendly text formatting tool
-        </strong>
-        designed to make editing and transforming text easier. Whether you want
-        to convert text to uppercase or lowercase, remove extra spaces, count
-        words and characters, or clean your text — TextUtils does it instantly.
-        It works directly inside your browser, ensuring speed, privacy, and a
-        smooth user experience.
+        TextUtils is a powerful web-based text utility platform designed to help
+        users transform, clean, and analyze text quickly. Whether you're writing
+        content, cleaning data, formatting text, or extracting important
+        information, TextUtils provides a collection of smart tools that make
+        working with text simple and efficient.
       </p>
 
-      <div className="accordion" id="accordionExample">
-        {/* Accordion 1 */}
-        <div className="accordion-item" style={myStyle}>
-          <h2 className="accordion-header">
-            <button
-              className="accordion-button"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseOne"
-              aria-expanded="true"
-              aria-controls="collapseOne"
-              style={myStyle}
-            >
-              What is TextUtils?
-            </button>
-          </h2>
-          <div
-            id="collapseOne"
-            className="accordion-collapse collapse show"
-            data-bs-parent="#accordionExample"
-          >
-            <div className="accordion-body" style={myStyle}>
-              <strong>
-                TextUtils is a fast and simple text transformation tool.
-              </strong>
-              It helps you convert text to uppercase, lowercase, remove extra
-              spaces, copy clean text, and analyze word/character count. Just
-              paste your text, choose an action, and get instant results.
-            </div>
-          </div>
+      <p>
+        Instead of manually editing large blocks of text, TextUtils allows you
+        to perform complex transformations instantly with just one click.
+        Everything runs directly inside your browser which ensures speed,
+        privacy, and a seamless user experience.
+      </p>
+
+      {/* Key Features Table */}
+      <h4 className="mt-5 mb-3">Key Features</h4>
+
+      <ul>
+        <li>
+          <strong>Text Formatting:</strong> Convert text to uppercase,
+          lowercase, title case, sentence case, and other formats instantly.
+        </li>
+
+        <li>
+          <strong>Text Cleanup:</strong> Remove extra spaces, numbers, special
+          characters, and HTML tags.
+        </li>
+
+        <li>
+          <strong>Text Transformation:</strong> Reverse text, shuffle words,
+          reorder sentences, and sort content alphabetically.
+        </li>
+
+        <li>
+          <strong>Data Extraction:</strong> Extract useful information such as
+          emails, URLs, phone numbers, hashtags, and numbers.
+        </li>
+
+        <li>
+          <strong>Text Analysis:</strong> Instantly see word count, character
+          count, reading time, and speaking time.
+        </li>
+
+        <li>
+          <strong>Live Preview:</strong> View transformed results in real time
+          without modifying the original input.
+        </li>
+
+        <li>
+          <strong>Dark / Light Mode:</strong> Switch themes for a comfortable
+          editing experience.
+        </li>
+
+        <li>
+          <strong>Responsive Design:</strong> Works smoothly on desktop, tablet,
+          and mobile devices.
+        </li>
+      </ul>
+      {/* Technology Stack Table */}
+      <h4 className="mt-5 mb-3">Technology Stack</h4>
+
+      <ul>
+        <li>
+          <strong>React.js:</strong> Builds dynamic and reusable UI components.
+        </li>
+
+        <li>
+          <strong>JavaScript (ES6+):</strong> Handles all text transformation
+          and processing logic.
+        </li>
+
+        <li>
+          <strong>Bootstrap:</strong> Provides responsive layout and
+          ready-to-use UI components.
+        </li>
+
+        <li>
+          <strong>React Router:</strong> Manages navigation between pages such
+          as Home and About.
+        </li>
+
+        <li>
+          <strong>CSS:</strong> Used for styling, layout improvements, and theme
+          customization.
+        </li>
+      </ul>
+      {/* Developer Section */}
+
+      <h4 className="mt-5 mb-4">About the Developer</h4>
+
+      <div className="row align-items-center">
+        {/* Image */}
+
+        <div className="col-md-4 text-center mb-4 mb-md-0">
+          <img
+            src="https://media.licdn.com/dms/image/v2/D5603AQFYvGdJw_-s0A/profile-displayphoto-scale_200_200/B56ZytkWXRG4Ac-/0/1772438519800?e=1775088000&v=beta&t=5YtgCrPHCmji8exji-owDrYvD1-PLSuQmolZL38-yms"
+            alt="Akanshu Jamwal"
+            className="img-fluid rounded-circle shadow"
+            style={{ width: "180px", height: "180px", objectFit: "cover" }}
+          />
         </div>
 
-        {/* Accordion 2 */}
-        <div className="accordion-item">
-          <h2 className="accordion-header">
-            <button
-              className="accordion-button collapsed"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseTwo"
-              aria-expanded="false"
-              aria-controls="collapseTwo"
-              style={myStyle}
-            >
-              Why Use TextUtils?
-            </button>
-          </h2>
-          <div
-            id="collapseTwo"
-            className="accordion-collapse collapse"
-            data-bs-parent="#accordionExample"
-          >
-            <div className="accordion-body" style={myStyle}>
-              <strong>Because it saves time and improves productivity.</strong>
-              Instead of manually editing text, TextUtils allows you to perform
-              common text operations in one click. It helps students,
-              developers, writers, and content creators keep their work clean
-              and formatted.
-            </div>
-          </div>
-        </div>
+        {/* Text */}
 
-        {/* Accordion 3 */}
-        <div className="accordion-item">
-          <h2 className="accordion-header">
-            <button
-              className="accordion-button collapsed"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseThree"
-              aria-expanded="false"
-              aria-controls="collapseThree"
-              style={myStyle}
-            >
-              How Does TextUtils Work?
-            </button>
-          </h2>
-          <div
-            id="collapseThree"
-            className="accordion-collapse collapse"
-            data-bs-parent="#accordionExample"
-          >
-            <div className="accordion-body" style={myStyle}>
-              <strong>TextUtils works completely inside your browser.</strong>
-              No data is uploaded to any server — everything is processed using
-              JavaScript in real-time. This ensures speed, privacy, and
-              security.
-            </div>
-          </div>
-        </div>
+        <div className="col-md-8">
+          <p>
+            Hello! I'm <strong>Akanshu Jamwal</strong>, a software developer
+            with a passion for building useful digital tools and intuitive web
+            applications. I enjoy solving real-world problems through clean
+            code, modern UI design, and scalable architecture.
+          </p>
 
-        {/* Accordion 4 - FAQ */}
-        <div className="accordion-item">
-          <h2 className="accordion-header">
-            <button
-              className="accordion-button collapsed"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseFour"
-              aria-expanded="false"
-              aria-controls="collapseFour"
-              style={myStyle}
+          <p>
+            TextUtils is one of the projects I built to improve my skills in
+            React development and frontend architecture. The goal was to design
+            a practical tool that demonstrates component-based design,
+            responsive layouts, and efficient text-processing logic.
+          </p>
+
+          <p>
+            I’m continuously learning and experimenting with new technologies to
+            build better products and user experiences.
+          </p>
+
+          {/* Buttons */}
+
+          <div className="mt-4 d-flex gap-3 flex-wrap">
+            <a
+              href="https://github.com/akanshujamwal"
+              target="_blank"
+              rel="noreferrer"
+              className="btn btn-dark"
             >
-              Frequently Asked Questions (FAQ)
-            </button>
-          </h2>
-          <div
-            id="collapseFour"
-            className="accordion-collapse collapse"
-            data-bs-parent="#accordionExample"
-          >
-            <div className="accordion-body" style={myStyle}>
-              <p>
-                <strong>Is TextUtils free to use?</strong> Yes! It is completely
-                free.
-              </p>
-              <p>
-                <strong>Is my text saved anywhere?</strong> No, everything
-                happens locally.
-              </p>
-              <p>
-                <strong>Can I use it on mobile?</strong> Yes, it works on all
-                screens.
-              </p>
-              <p>
-                <strong>Who can use TextUtils?</strong> Anyone who works with
-                text.
-              </p>
-            </div>
+              <FaGithub className="me-2" />
+              GitHub
+            </a>
+            <a
+              href="https://www.linkedin.com/in/akanshu-jamwal/"
+              target="_blank"
+              rel="noreferrer"
+              className="btn btn-primary me-2"
+            >
+              <FaLinkedin className="me-2" />
+              LinkedIn
+            </a>
           </div>
         </div>
-      </div>
-      <div className="container my-3">
-        <button onClick={toggleStyle} type="button" class="btn btn-primary">
-          {btnText}
-        </button>
       </div>
     </div>
   );

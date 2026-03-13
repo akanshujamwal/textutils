@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,170 @@
   to {
     transform: rotate(360deg);
   }
+} */
+/* ---------------- GLOBAL ---------------- */
+
+body {
+  margin: 0;
+  font-family: Inter, Roboto, Arial, sans-serif;
+  transition: background 0.3s ease, color 0.3s ease;
 }
+
+/* ---------------- LIGHT MODE ---------------- */
+
+body.light {
+  background: #f8f9fa;
+  color: #202124;
+}
+
+/* ---------------- DARK MODE ---------------- */
+
+body.dark {
+
+    
+
+  background: #121212;
+  color: #e8eaed;
+}
+
+/* ---------------- CARDS ---------------- */
+
+.card {
+  border-radius: 10px;
+}
+
+.dark .card {
+  background: #1e1e1e;
+  border: 1px solid #333;
+  color: #e8eaed;
+}
+
+/* ---------------- TEXTAREA ---------------- */
+
+textarea.form-control {
+  border-radius: 8px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.dark textarea.form-control {
+  background: #1e1e1e;
+  color: #ffffff;
+  border: 1px solid #444;
+}
+
+/* ---------------- STATS BAR ---------------- */
+
+.stats-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 13px;
+}
+
+/* ---------------- TOOL CHIPS ---------------- */
+
+.tool-chip {
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-size: 12px;
+  border: 1px solid #dadce0;
+  background: #ffffff;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.tool-chip:hover {
+  background: #f1f3f4;
+}
+
+/* Dark chips */
+
+.dark .tool-chip {
+  background: #2a2a2a;
+  border: 1px solid #444;
+  color: #ffffff;
+}
+
+.dark .tool-chip:hover {
+  background: #3a3a3a;
+}
+
+/* ---------------- TOOLBAR ---------------- */
+.toolBar {
+  position: sticky;
+  top: 120px;
+  z-index: 5;
+
+  background: inherit;
+  padding: 8px 0;
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(4px);
+}
+/* .toolBar {
+  position: sticky;
+  top: 70px;
+  z-index: 100;
+  padding: 6px 0;
+  background: inherit;
+} */
+
+/* ---------------- PREVIEW ---------------- */
+
+.preview-box {
+  min-height: 200px;
+  white-space: pre-wrap;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* ---------------- NAVBAR ---------------- */
+
+.navbar {
+  transition: background 0.3s ease;
+}
+
+/* ---------------- SCROLLBAR (Optional polish) ---------------- */
+
+::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 6px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #555;
+}
+
+
+
+.stats-bar {
+  position: sticky;
+  top: 70px;
+  background: inherit;
+  z-index: 5;
+}
+
+.footer {
+  background: #f8f9fa;
+}
+
+.dark .footer {
+  background: #1e1e1e;
+}
+
+.footer a {
+  color: #1a73e8;
+  font-weight: 500;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
