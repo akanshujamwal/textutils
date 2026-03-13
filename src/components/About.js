@@ -274,15 +274,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* ══════════════════════════════
-          FOOTER NOTE
-          ══════════════════════════════ */}
-      <section className="ab-foot container">
-        <div className="ab-foot-rule" />
-        <p className="ab-foot-text">
-          © {new Date().getFullYear()} TextUtils &mdash; All Rights Reserved
-        </p>
-      </section>
+      
     </div>
   );
 }
