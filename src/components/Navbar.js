@@ -1,187 +1,118 @@
-// import { useState, useEffect } from "react";
-// import { FaFileAlt, FaMoon, FaSun } from "react-icons/fa";
-// import PropTypes from "prop-types";
-
-// export default function Navbar({ title }) {
-//   const [dark, setDark] = useState(false);
-//   const [time, setTime] = useState(new Date());
-
-//   useEffect(() => {
-//     const t = setInterval(() => setTime(new Date()), 1000);
-//     return () => clearInterval(t);
-//   }, []);
-
-//   useEffect(() => {
-//     document.body.className = dark ? "dark" : "light";
-//   }, [dark]);
-
-//   const date = time.toLocaleDateString("en-GB", {
-//     day: "numeric",
-//     month: "short",
-//     year: "numeric",
-//   });
-//   const clock = time.toLocaleTimeString("en-GB", { hour12: false });
-
-//   return (
-//     <nav
-//       className={`navbar navbar-expand-lg ${dark ? "navbar-dark bg-dark" : "navbar-light bg-white"} shadow-sm fixed-top`}
-//     >
-//       <div className="container-fluid">
-//         <a className="navbar-brand d-flex align-items-center gap-2" href="/">
-//           <FaFileAlt size={20} style={{ color: "#1a73e8" }} />
-
-//           <strong style={{ color: "#1a73e8" }}>{title}</strong>
-//         </a>
-
-//         <button
-//           className="navbar-toggler"
-//           data-bs-toggle="collapse"
-//           data-bs-target="#nav"
-//         >
-//           <span className="navbar-toggler-icon" />
-//         </button>
-
-//         <div className="collapse navbar-collapse" id="nav">
-//           <ul className="navbar-nav mx-auto">
-//             <li className="nav-item">
-//               <a className="nav-link" href="/">
-//                 Home
-//               </a>
-//             </li>
-
-//             <li className="nav-item">
-//               <a className="nav-link" href="/about">
-//                 About
-//               </a>
-//             </li>
-//           </ul>
-
-//           <div className="d-flex align-items-center gap-3">
-//             <strong style={{ fontSize: 14 }}>
-//               {date} | {clock}
-//             </strong>
-
-//             <button
-//               className="btn btn-sm btn-outline-secondary"
-//               onClick={() => setDark(!dark)}
-//             >
-//               {dark ? <FaSun /> : <FaMoon />}
-//             </button>
-//           </div>
-//         </div>
-//       </div>
-//     </nav>
-//   );
-// }
-
-// Navbar.propTypes = { title: PropTypes.string };
-// Navbar.defaultProps = { title: "TextUtils" };
 import { useEffect, useState } from "react";
 import { FaMoon, FaSun, FaFileAlt } from "react-icons/fa";
 import PropTypes from "prop-types";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Navbar(props) {
   const [theme, setTheme] = useState("light");
-
   const [time, setTime] = useState(new Date());
+  const location = useLocation();
 
-  /* Load saved theme */
-
+  /* ── Load saved theme on mount ── */
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme") || "light";
-
-    setTheme(savedTheme);
-
-    document.body.classList.add(savedTheme);
+    const saved = localStorage.getItem("theme") || "light";
+    setTheme(saved);
+    applyTheme(saved);
   }, []);
 
-  /* Update time */
-
+  /* ── Live clock ── */
   useEffect(() => {
-    const timer = setInterval(() => {
-      setTime(new Date());
-    }, 1000);
-
+    const timer = setInterval(() => setTime(new Date()), 1000);
     return () => clearInterval(timer);
   }, []);
 
-  /* Toggle theme */
-
-  const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-
-    document.body.classList.remove(theme);
-
-    document.body.classList.add(newTheme);
-
-    localStorage.setItem("theme", newTheme);
-
-    setTheme(newTheme);
+  /* ── Apply theme to BOTH <html> and <body> ── */
+  const applyTheme = (t) => {
+    document.documentElement.classList.remove("light", "dark");
+    document.documentElement.classList.add(t);
+    document.body.classList.remove("light", "dark");
+    document.body.classList.add(t);
+    localStorage.setItem("theme", t);
   };
 
-  /* Date format */
+  const toggleTheme = () => {
+    const next = theme === "light" ? "dark" : "light";
+    applyTheme(next);
+    setTheme(next);
+  };
 
+  /* ── Formatted date / time ── */
   const date = time.toLocaleDateString("en-GB", {
     day: "numeric",
     month: "short",
     year: "numeric",
   });
-
   const clock = time.toLocaleTimeString("en-GB");
+
+  /* ── Active route helper ── */
+  const isActive = (path) =>
+    path === "/"
+      ? location.pathname === "/"
+      : location.pathname.startsWith(path);
 
   return (
     <nav
-      className={`navbar navbar-expand-lg ${theme === "dark" ? "navbar-dark bg-dark" : "navbar-light bg-white"} shadow-sm`}
+      className={`navbar navbar-expand-lg shadow-sm ${
+        theme === "dark" ? "navbar-dark" : "navbar-light"
+      }`}
     >
-      <div className="container-fluid">
-        {/* Logo */}
-
-        <a className="navbar-brand d-flex align-items-center gap-2" href="/">
+      <div className="container">
+        {/* ── Logo / Brand ── */}
+        <Link className="navbar-brand d-flex align-items-center gap-2" to="/">
           <FaFileAlt size={20} style={{ color: "#1a73e8" }} />
-
           <strong style={{ color: "#1a73e8" }}>{props.title}</strong>
-        </a>
+        </Link>
 
-        {/* Toggle */}
-
+        {/* ── Mobile toggler ── */}
         <button
           className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarContent"
+          aria-controls="navbarContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon"></span>
         </button>
 
         <div className="collapse navbar-collapse" id="navbarContent">
-          {/* Center links */}
-
+          {/* ── Center nav links ── */}
           <ul className="navbar-nav mx-auto">
-            <li className="nav-item">
-              <a className="nav-link" href="/">
-                Home
-              </a>
-            </li>
-
-            <li className="nav-item">
-              <a className="nav-link" href="/about">
-                About
-              </a>
-            </li>
+            {[
+              { label: "Home", to: "/" },
+              { label: "Tools", to: "/tools" },
+              { label: "About", to: "/about" },
+              { label: "Contact", to: "/contact" },
+            ].map(({ label, to }) => (
+              <li className="nav-item" key={to}>
+                <Link
+                  className={`nav-link nav-link-custom${isActive(to) ? " nav-link-active" : ""}`}
+                  to={to}
+                >
+                  {label}
+                </Link>
+              </li>
+            ))}
           </ul>
 
-          {/* Right side */}
-
+          {/* ── Right: clock + theme toggle ── */}
           <div className="d-flex align-items-center gap-3">
-            <strong style={{ fontSize: "14px" }}>
-              {date} | {clock}
-            </strong>
+            <span className="navbar-clock">
+              {date}&nbsp;&nbsp;|&nbsp;&nbsp;{clock}
+            </span>
 
             <button
               onClick={toggleTheme}
-              className="btn btn-sm btn-outline-secondary"
+              className="btn btn-sm btn-outline-secondary theme-toggle-btn"
+              title={
+                theme === "dark"
+                  ? "Switch to light mode"
+                  : "Switch to dark mode"
+              }
+              aria-label="Toggle theme"
             >
-              {theme === "dark" ? <FaSun /> : <FaMoon />}
+              {theme === "dark" ? <FaSun size={14} /> : <FaMoon size={14} />}
             </button>
           </div>
         </div>

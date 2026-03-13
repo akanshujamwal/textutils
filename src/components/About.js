@@ -1,162 +1,288 @@
-import React from "react";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { useEffect, useRef } from "react";
+import { FaGithub, FaLinkedin, FaArrowRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
+
+/* ── Intersection Observer hook for staggered reveal ── */
+function useReveal() {
+  const ref = useRef(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add("revealed");
+          obs.unobserve(el);
+        }
+      },
+      { threshold: 0.12 },
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+  return ref;
+}
+
+/* ── Reusable reveal wrapper ── */
+function Reveal({ children, delay = 0, className = "" }) {
+  const ref = useReveal();
+  return (
+    <div
+      ref={ref}
+      className={`reveal-block ${className}`}
+      style={{ "--delay": `${delay}ms` }}
+    >
+      {children}
+    </div>
+  );
+}
+
+/* ── Data ── */
+const stats = [
+  { value: "61", label: "Tools" },
+  { value: "7", label: "Categories" },
+  { value: "0", label: "Data sent" },
+  { value: "100%", label: "Free forever" },
+];
+
+const features = [
+  {
+    num: "01",
+    title: "Text Formatting",
+    desc: "Ten case transformations — from UPPERCASE to snake_case and PascalCase — applied in one click.",
+  },
+  {
+    num: "02",
+    title: "Cleanup",
+    desc: "Strip noise: extra spaces, HTML tags, numbers, punctuation, and empty lines disappear instantly.",
+  },
+  {
+    num: "03",
+    title: "Transform",
+    desc: "Reverse, sort, shuffle, ROT13 — rearrange text in ways you never thought to do by hand.",
+  },
+  {
+    num: "04",
+    title: "Encode / Decode",
+    desc: "Base64, URL, HTML encoding and binary conversion. No external service required.",
+  },
+  {
+    num: "05",
+    title: "Data Extraction",
+    desc: "Pull emails, URLs, phone numbers, hashtags, @mentions, and sentences out of any block of text.",
+  },
+  {
+    num: "06",
+    title: "Advanced",
+    desc: "JSON prettify, slug generator, word frequency analysis, wrap at 80 chars and more.",
+  },
+];
+
+const stack = [
+  { name: "React 18", color: "#61dafb" },
+  { name: "React Router 6", color: "#f44250" },
+  { name: "Bootstrap 5", color: "#7952b3" },
+  { name: "JavaScript ES6+", color: "#f7df1e" },
+  { name: "CSS Variables", color: "#1a73e8" },
+  { name: "Vite / CRA", color: "#646cff" },
+];
 
 export default function About() {
   return (
-    <div className="container py-5">
-      {/* Page Title */}
-
-      <h2 className="mb-4">About TextUtils</h2>
-
-      <p className="lead">
-        TextUtils is a powerful web-based text utility platform designed to help
-        users transform, clean, and analyze text quickly. Whether you're writing
-        content, cleaning data, formatting text, or extracting important
-        information, TextUtils provides a collection of smart tools that make
-        working with text simple and efficient.
-      </p>
-
-      <p>
-        Instead of manually editing large blocks of text, TextUtils allows you
-        to perform complex transformations instantly with just one click.
-        Everything runs directly inside your browser which ensures speed,
-        privacy, and a seamless user experience.
-      </p>
-
-      {/* Key Features Table */}
-      <h4 className="mt-5 mb-3">Key Features</h4>
-
-      <ul>
-        <li>
-          <strong>Text Formatting:</strong> Convert text to uppercase,
-          lowercase, title case, sentence case, and other formats instantly.
-        </li>
-
-        <li>
-          <strong>Text Cleanup:</strong> Remove extra spaces, numbers, special
-          characters, and HTML tags.
-        </li>
-
-        <li>
-          <strong>Text Transformation:</strong> Reverse text, shuffle words,
-          reorder sentences, and sort content alphabetically.
-        </li>
-
-        <li>
-          <strong>Data Extraction:</strong> Extract useful information such as
-          emails, URLs, phone numbers, hashtags, and numbers.
-        </li>
-
-        <li>
-          <strong>Text Analysis:</strong> Instantly see word count, character
-          count, reading time, and speaking time.
-        </li>
-
-        <li>
-          <strong>Live Preview:</strong> View transformed results in real time
-          without modifying the original input.
-        </li>
-
-        <li>
-          <strong>Dark / Light Mode:</strong> Switch themes for a comfortable
-          editing experience.
-        </li>
-
-        <li>
-          <strong>Responsive Design:</strong> Works smoothly on desktop, tablet,
-          and mobile devices.
-        </li>
-      </ul>
-      {/* Technology Stack Table */}
-      <h4 className="mt-5 mb-3">Technology Stack</h4>
-
-      <ul>
-        <li>
-          <strong>React.js:</strong> Builds dynamic and reusable UI components.
-        </li>
-
-        <li>
-          <strong>JavaScript (ES6+):</strong> Handles all text transformation
-          and processing logic.
-        </li>
-
-        <li>
-          <strong>Bootstrap:</strong> Provides responsive layout and
-          ready-to-use UI components.
-        </li>
-
-        <li>
-          <strong>React Router:</strong> Manages navigation between pages such
-          as Home and About.
-        </li>
-
-        <li>
-          <strong>CSS:</strong> Used for styling, layout improvements, and theme
-          customization.
-        </li>
-      </ul>
-      {/* Developer Section */}
-
-      <h4 className="mt-5 mb-4">About the Developer</h4>
-
-      <div className="row align-items-center">
-        {/* Image */}
-
-        <div className="col-md-4 text-center mb-4 mb-md-0">
-          <img
-            src="https://media.licdn.com/dms/image/v2/D5603AQFYvGdJw_-s0A/profile-displayphoto-scale_200_200/B56ZytkWXRG4Ac-/0/1772438519800?e=1775088000&v=beta&t=5YtgCrPHCmji8exji-owDrYvD1-PLSuQmolZL38-yms"
-            alt="Akanshu Jamwal"
-            className="img-fluid rounded-circle shadow"
-            style={{ width: "180px", height: "180px", objectFit: "cover" }}
-          />
+    <div className="about-page about-v2">
+      {/* ══════════════════════════════
+          HERO — full-bleed editorial header
+          ══════════════════════════════ */}
+      <section className="ab-hero">
+        <div className="ab-hero-eyebrow">
+          <span className="ab-eyebrow-line" />
+          About the project
+          <span className="ab-eyebrow-line" />
         </div>
 
-        {/* Text */}
+        <h1 className="ab-hero-title">
+          Text&thinsp;<em>Utils</em>
+        </h1>
 
-        <div className="col-md-8">
-          <p>
-            Hello! I'm <strong>Akanshu Jamwal</strong>, a software developer
-            with a passion for building useful digital tools and intuitive web
-            applications. I enjoy solving real-world problems through clean
-            code, modern UI design, and scalable architecture.
-          </p>
+        <p className="ab-hero-tagline">
+          A browser-native text laboratory. No accounts, no uploads, no
+          telemetry — just your text and 61 tools that work at the speed of
+          thought.
+        </p>
 
-          <p>
-            TextUtils is one of the projects I built to improve my skills in
-            React development and frontend architecture. The goal was to design
-            a practical tool that demonstrates component-based design,
-            responsive layouts, and efficient text-processing logic.
-          </p>
+        <div className="ab-hero-cta">
+          <Link to="/" className="ab-cta-primary">
+            Open the editor <FaArrowRight size={12} />
+          </Link>
+          <Link to="/tools" className="ab-cta-ghost">
+            Browse all tools
+          </Link>
+        </div>
 
-          <p>
-            I’m continuously learning and experimenting with new technologies to
-            build better products and user experiences.
-          </p>
+        {/* decorative ruled line */}
+        <div className="ab-hero-rule" />
+      </section>
 
-          {/* Buttons */}
+      {/* ══════════════════════════════
+          STATS ROW
+          ══════════════════════════════ */}
+      <section className="ab-stats-row container">
+        {stats.map((s, i) => (
+          <Reveal key={s.label} delay={i * 80}>
+            <div className="ab-stat">
+              <span className="ab-stat-value">{s.value}</span>
+              <span className="ab-stat-label">{s.label}</span>
+            </div>
+          </Reveal>
+        ))}
+      </section>
 
-          <div className="mt-4 d-flex gap-3 flex-wrap">
-            <a
-              href="https://github.com/akanshujamwal"
-              target="_blank"
-              rel="noreferrer"
-              className="btn btn-dark"
-            >
-              <FaGithub className="me-2" />
-              GitHub
-            </a>
-            <a
-              href="https://www.linkedin.com/in/akanshu-jamwal/"
-              target="_blank"
-              rel="noreferrer"
-              className="btn btn-primary me-2"
-            >
-              <FaLinkedin className="me-2" />
-              LinkedIn
-            </a>
+      {/* ══════════════════════════════
+          PHILOSOPHY — large pull quote
+          ══════════════════════════════ */}
+      <section className="ab-quote-section container">
+        <Reveal>
+          <blockquote className="ab-quote">
+            "The best tool is the one that gets out of your way. TextUtils runs
+            entirely in your browser — your text never touches a server."
+          </blockquote>
+        </Reveal>
+      </section>
+
+      {/* ══════════════════════════════
+          FEATURES GRID — editorial numbered list
+          ══════════════════════════════ */}
+      <section className="ab-features container">
+        <Reveal>
+          <div className="ab-section-header">
+            <span className="ab-section-label">What it does</span>
+            <h2 className="ab-section-title">
+              Six categories. Sixty-one tools.
+            </h2>
           </div>
+        </Reveal>
+
+        <div className="ab-features-grid">
+          {features.map((f, i) => (
+            <Reveal key={f.num} delay={i * 60}>
+              <div className="ab-feature-card">
+                <span className="ab-feature-num">{f.num}</span>
+                <div className="ab-feature-body">
+                  <h3 className="ab-feature-title">{f.title}</h3>
+                  <p className="ab-feature-desc">{f.desc}</p>
+                </div>
+              </div>
+            </Reveal>
+          ))}
         </div>
-      </div>
+      </section>
+
+      {/* ══════════════════════════════
+          TECH STACK — horizontal pill ticker
+          ══════════════════════════════ */}
+      <section className="ab-stack-section">
+        <Reveal>
+          <div
+            className="container ab-section-header"
+            style={{ marginBottom: "28px" }}
+          >
+            <span className="ab-section-label">Built with</span>
+            <h2 className="ab-section-title">Technology stack</h2>
+          </div>
+        </Reveal>
+        <div className="ab-stack-ticker-wrap">
+          {/* duplicate for seamless loop */}
+          {[...stack, ...stack].map((s, i) => (
+            <span
+              key={i}
+              className="ab-stack-pill"
+              style={{ "--accent": s.color }}
+            >
+              <span className="ab-stack-dot" />
+              {s.name}
+            </span>
+          ))}
+        </div>
+      </section>
+
+      {/* ══════════════════════════════
+          DEVELOPER — magazine asymmetric spread
+          ══════════════════════════════ */}
+      <section className="ab-dev-section container">
+        <Reveal>
+          <div className="ab-section-header">
+            <span className="ab-section-label">The human behind it</span>
+            <h2 className="ab-section-title">Developer</h2>
+          </div>
+        </Reveal>
+
+        <div className="ab-dev-grid">
+          {/* left — photo column */}
+          <Reveal delay={0} className="ab-dev-photo-col">
+            <div className="ab-dev-photo-wrap">
+              <img
+                src="https://media.licdn.com/dms/image/v2/D5603AQFYvGdJw_-s0A/profile-displayphoto-scale_200_200/B56ZytkWXRG4Ac-/0/1772438519800?e=1775088000&v=beta&t=5YtgCrPHCmji8exji-owDrYvD1-PLSuQmolZL38-yms"
+                alt="Akanshu Jamwal"
+                className="ab-dev-photo"
+              />
+              {/* floating name card */}
+              <div className="ab-dev-namecard">
+                <strong>Akanshu Jamwal</strong>
+                <span>Software Developer</span>
+              </div>
+            </div>
+          </Reveal>
+
+          {/* right — bio column */}
+          <Reveal delay={100} className="ab-dev-bio-col">
+            <p className="ab-dev-intro">
+              I build digital tools that are fast, private, and genuinely
+              useful.
+            </p>
+            <p className="ab-dev-body">
+              TextUtils started as a React learning project and grew into a
+              real-world utility I use daily. The goal was simple: demonstrate
+              what clean component architecture, thoughtful UX, and
+              zero-dependency design can produce together.
+            </p>
+            <p className="ab-dev-body">
+              I'm continuously shipping, experimenting with new patterns, and
+              pushing toward better products and user experiences.
+            </p>
+
+            <div className="ab-dev-links">
+              <a
+                href="https://github.com/akanshujamwal"
+                target="_blank"
+                rel="noreferrer"
+                className="ab-dev-link ab-dev-link--github"
+              >
+                <FaGithub size={15} />
+                GitHub
+              </a>
+              <a
+                href="https://www.linkedin.com/in/akanshu-jamwal/"
+                target="_blank"
+                rel="noreferrer"
+                className="ab-dev-link ab-dev-link--linkedin"
+              >
+                <FaLinkedin size={15} />
+                LinkedIn
+              </a>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════
+          FOOTER NOTE
+          ══════════════════════════════ */}
+      <section className="ab-foot container">
+        <div className="ab-foot-rule" />
+        <p className="ab-foot-text">
+          © {new Date().getFullYear()} TextUtils &mdash; All Rights Reserved
+        </p>
+      </section>
     </div>
   );
 }
