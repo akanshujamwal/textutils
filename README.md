@@ -1,4 +1,4 @@
-# ✍️ TextUtils — Browser-Native Text Laboratory
+# TextUtils — Browser-Native Text Laboratory
 
 > **61 tools. Zero uploads. Everything runs in your browser — your text stays yours.**
 
